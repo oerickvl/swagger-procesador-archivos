@@ -1,0 +1,149 @@
+openapi: 3.0.1
+info:
+  title: Web Service Procesador de archivos
+  description: |-
+    Sistema de clasificación de documentos serverless compuesto por una Azure Function (proyectoancon) que procesa un documento que se envía a través de la plataforma. Se procesa el archivo enviado y una vez realizado, se llama a un microservicio (microservicio-ai-azure) de clasificación de imágenes el cual devuelve una respuesta en formato .JSON con información de salida correspondiente al archivo.
+
+    **Endpoint N°1: proyectoancon**
+    -  https://proyectoancon-fhgnbmanaweednd7.eastus-01.azurewebsites.net/api/http_trigger?code=Xxp0Krs3EiMCoXRPOisbk9QRcijYQVS14XhrQavTStGeAzFuALI60w%3D%3D
+
+    **Endpoint N°2: microservicio-ai-azure**
+    -  https://microservicio-ai-azure.azurewebsites.net/predict
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/pucp-ada/proyectoancon-api/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://app.swaggerhub.com
+  description: API Test
+paths:
+  /api/http_trigger:
+    post:
+      summary: Integracion que procesa y categoriza archivos PDF o imágenes
+      parameters:
+      - name: code
+        in: query
+        description: Clave de acceso de Azure Function (si aplica)
+        required: false
+        schema:
+          type: string
+          example: Xxp0Krs3EiMCoXRPOisbk9QRcijYQVS14XhrQavTStGeAzFuALI60w==
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/api_http_trigger_body"
+        required: true
+      responses:
+        "200":
+          description: Respuesta con el resultado del análisis
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200"
+    servers:
+    - url: https://proyectoancon-fhgnbmanaweednd7.eastus-01.azurewebsites.net
+      description: Servicio que procesa y categoriza archivos PDF o imágenes
+  /predict:
+    post:
+      summary: Prueba de modelo clasificador de imágenes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/predict_body"
+        required: true
+      responses:
+        "200":
+          description: Respuesta procesada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200_1"
+    servers:
+    - url: https://microservicio-ai-azure.azurewebsites.net
+      description: Servicio de clasificación de imágenes
+components:
+  schemas:
+    api_http_trigger_body:
+      type: object
+      properties:
+        file:
+          type: string
+          description: "Subir archivo PDF o imagen (.jpeg, .jpg, .png, .gif)"
+          format: binary
+    inline_response_200:
+      type: object
+      properties:
+        fileName:
+          type: string
+        filedata:
+          type: string
+        category:
+          type: string
+        scores:
+          type: array
+          items:
+            type: number
+      example:
+        fileName: 009-1229879_1_1.jpg
+        filedata: /9j/4AAQSkZJRgABAQAAAQABAAD/...
+        category: Solicitud de seguro de automoviles-F2-p2 (150)
+        scores:
+        - 0.0033681556
+        - 9.797605E-6
+        - 8.67894E-6
+        - 2.2061123E-7
+        - 6.674753E-7
+        - 0.0010731195
+        - 3.0241905E-5
+        - 3.8276974E-4
+        - 1.0861097E-5
+        - 6.1077246E-4
+        - 1.42560575E-5
+        - 0.009054977
+        - 1.0228109E-4
+        - 0.017526876
+        - 0.94544774
+        - 0.0064282897
+        - 0.01593021
+    predict_body:
+      type: object
+      properties:
+        ImageBase64:
+          type: string
+          description: Imagen codificada en Base64
+      example:
+        ImageBase64: /9j/4AAQSkZJRgABAQAAAQABAAD//...
+    inline_response_200_1:
+      type: object
+      properties:
+        predictedLabel:
+          type: string
+        scores:
+          type: array
+          items:
+            type: number
+      example:
+        predictedLabel: Registro unico de propiedad vehicular (150)
+        scores:
+        - 0.0011501078
+        - 2.0256604E-4
+        - 2.3975267E-4
+        - 2.4591418E-7
+        - 7.406038E-8
+        - 5.9815335E-7
+        - 0.0199826
+        - 0.010026623
+        - 2.4429255E-6
+        - 0.9235826
+        - 0.044808913
+        - 2.2428998E-7
+        - 1.4200254E-8
+        - 3.661955E-7
+        - 2.76438E-6
+        - 8.7998453E-10
+        - 2.3557696E-7
+x-origin:
+- url: https://app.swaggerhub.com
+  format: swagger
+  version: "3.0"
