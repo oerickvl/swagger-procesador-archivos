@@ -13,8 +13,7 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/pucp-ada/proyectoancon-api/1.0.0
   description: SwaggerHub API Auto Mocking
-- url: https://app.swaggerhub.com
-  description: API Test
+
 paths:
   /api/http_trigger:
     post:
