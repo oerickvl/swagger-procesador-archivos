@@ -8,7 +8,7 @@ info:
     -  https://proyectoancon-fhgnbmanaweednd7.eastus-01.azurewebsites.net/api/http_trigger?code=Xxp0Krs3EiMCoXRPOisbk9QRcijYQVS14XhrQavTStGeAzFuALI60w%3D%3D
 
     **Endpoint N°2: microservicio-ai-azure**
-    -  https://microservicio-ai-azure.azurewebsites.net/predict
+    -  https://proyectoancon-ai-webapp.azurewebsites.net/predict
   version: 1.0.0
 servers:
 - url: https://virtserver.swaggerhub.com/pucp-ada/proyectoancon-api/1.0.0
@@ -59,7 +59,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/inline_response_200_1"
     servers:
-    - url: https://microservicio-ai-azure.azurewebsites.net
+    - url: https://proyectoancon-ai-webapp.azurewebsites.net
       description: Servicio de clasificación de imágenes
 components:
   schemas:
