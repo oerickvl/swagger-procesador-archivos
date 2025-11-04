@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Web Service Procesador de archivos
   description: |-
-    Sistema de clasificación de documentos serverless compuesto por una Azure Function (proyectoancon) que procesa un documento enviado a través de la plataforma. 
+    Sistema de clasificación de documentos serverless compuesto por una Azure Function (proyectoancon) que procesa un documento enviado a través de la plataforma.
     Se procesa el archivo y, una vez realizado, se devuelve una respuesta en formato JSON con la información correspondiente al resultado del procesamiento.
 
     **Endpoint: proyectoancon**
