@@ -7,10 +7,11 @@ info:
 
     **Endpoint: proyectoancon**
     - https://proyectoancon-fhgnbmanaweednd7.eastus-01.azurewebsites.net/api/http_trigger?code=Xxp0Krs3EiMCoXRPOisbk9QRcijYQVS14XhrQavTStGeAzFuALI60w%3D%3D
+    
   version: 1.0.0
 
 servers:
-  - url: https://virtserver.swaggerhub.com/pucp-ada/proyectoancon-api/1.0.0
+  - url: https://proyectoancon-fhgnbmanaweednd7.eastus-01.azurewebsites.net
     description: SwaggerHub API Auto Mocking
 
 paths:
@@ -65,9 +66,6 @@ paths:
                       - 2.4642584e-06
                       - 4.4816573e-09
                       - 6.077798e-07
-    servers:
-      - url: https://proyectoancon-fhgnbmanaweednd7.eastus-01.azurewebsites.net
-        description: Servicio que procesa y categoriza archivos PDF o imágenes
 
 components:
   schemas:
