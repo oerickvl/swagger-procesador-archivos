@@ -62,4 +62,60 @@ paths:
                       - 1.4225467e-06
                       - 7.165576e-07
                       - 2.4642584e-06
-                      - 4.4816573e
+                      - 4.4816573e-09
+                      - 6.077798e-07
+    servers:
+      - url: https://proyectoancon-fhgnbmanaweednd7.eastus-01.azurewebsites.net
+        description: Servicio que procesa y categoriza archivos PDF o imágenes
+
+components:
+  schemas:
+    api_http_trigger_body:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+          description: Subir archivo PDF o imagen (.jpeg, .jpg, .png, .gif)
+
+    inline_response_200:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            processing_time_sec:
+              type: number
+              format: float
+              description: Tiempo total de procesamiento en segundos
+            file_processed:
+              type: string
+              description: Nombre del archivo procesado
+            num_pages:
+              type: integer
+              description: Número de páginas procesadas (si aplica)
+        results:
+          type: array
+          description: Resultados de la clasificación
+          items:
+            type: object
+            properties:
+              fileName:
+                type: string
+                description: Nombre del archivo resultante
+              category:
+                type: string
+                description: Categoría o clase predicha
+              method:
+                type: string
+                description: Tipo de método o formato usado en el procesamiento
+              scores:
+                type: array
+                description: Valores de probabilidad por categoría
+                items:
+                  type: number
+
+x-origin:
+  - url: https://app.swaggerhub.com
+    format: swagger
+    version: "3.0"
