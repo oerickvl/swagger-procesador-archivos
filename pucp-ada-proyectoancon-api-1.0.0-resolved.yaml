@@ -2,10 +2,11 @@ openapi: 3.0.1
 info:
   title: Web Service Procesador de archivos
   description: |-
-    Sistema de clasificación de documentos serverless compuesto por una Azure Function (proyectoancon) que procesa un documento enviado a través de la plataforma. Se procesa el archivo y, una vez realizado, se devuelve una respuesta en formato JSON con la información correspondiente al resultado del procesamiento.
+    Sistema de clasificación de documentos serverless compuesto por una Azure Function (proyectoancon) que procesa un documento enviado a través de la plataforma. 
+    Se procesa el archivo y, una vez realizado, se devuelve una respuesta en formato JSON con la información correspondiente al resultado del procesamiento.
 
     **Endpoint: proyectoancon**
-    -  https://proyectoancon-fhgnbmanaweednd7.eastus-01.azurewebsites.net/api/http_trigger?code=Xxp0Krs3EiMCoXRPOisbk9QRcijYQVS14XhrQavTStGeAzFuALI60w%3D%3D
+    - https://proyectoancon-fhgnbmanaweednd7.eastus-01.azurewebsites.net/api/http_trigger?code=Xxp0Krs3EiMCoXRPOisbk9QRcijYQVS14XhrQavTStGeAzFuALI60w%3D%3D
   version: 1.0.0
 
 servers:
@@ -29,14 +30,14 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/api_http_trigger_body"
+              $ref: '#/components/schemas/api_http_trigger_body'
       responses:
         "200":
           description: Respuesta con el resultado del análisis
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/inline_response_200"
+                $ref: '#/components/schemas/inline_response_200'
               example:
                 metadata:
                   processing_time_sec: 3.1033
